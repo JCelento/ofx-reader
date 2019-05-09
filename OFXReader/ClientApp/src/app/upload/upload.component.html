@@ -1,0 +1,28 @@
+<h1>Upload one or more files</h1>
+<div>
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-6 offset-md-3">
+
+          <div class="form-group">
+            <label class="btn btn-primary  btn-lg">
+              Browse...<input #file type="file" multiple (change)="upload(file.files)" accept=".ofx" hidden>
+            </label>
+            <span style="font-weight:bold;color:darkblue" *ngIf="uploading">
+              Uploading...{{progress}}%
+            </span>
+            <span style="font-weight:bold;color:green;" *ngIf="response">
+              {{response.message}}
+            </span>
+
+            <span style="font-weight:bold;color:red;" *ngIf="response && response.status === 422">
+              Upload failed.
+            </span>
+
+          </div>
+        </div>
+      </div>
+        </div>
+    </div>
+ 

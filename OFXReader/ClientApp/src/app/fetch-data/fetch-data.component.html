@@ -1,0 +1,43 @@
+<h1>Your transactions</h1>
+
+
+<p *ngIf="!transactions"><em>Loading...</em></p>
+<div class="container my-4">
+  <p class="col-md-6 mb-4 left">Click on any column to order the registers</p>
+  <div class="col-md-3 mb-2 right">
+    <input class="form-control form-control-sm mb-4" type="text" name="search" placeholder="Search.." [(ngModel)]="filter">
+  </div>
+</div>
+<br/>
+<br/>
+  <table class='table' *ngIf="transactions">
+    <thead>
+      <tr>
+        <th (click)="sort('date')">
+          Date
+          <span class="glyphicon sort-icon" *ngIf="key =='date'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+        </th>
+        <th (click)="sort('type')">
+          Type
+          <span class="glyphicon sort-icon" *ngIf="key =='type'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+        </th>
+        <th (click)="sort('amount')">
+          Amount
+          <span class="glyphicon sort-icon" *ngIf="key =='amount'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+        </th>
+        <th (click)="sort('description')">
+          Description
+          <span class="glyphicon sort-icon" *ngIf="key =='description'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let transaction of transactions | orderBy: key : reverse |  filter:filter| paginate: { itemsPerPage: 20, currentPage: page }; let i = index">
+        <td>{{ transaction.date }}</td>
+        <td>{{ transaction.type }}</td>
+        <td>{{ transaction.amount }}</td>
+        <td>{{ transaction.description }}</td>
+      </tr>
+    </tbody>
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+  </table>

@@ -1,0 +1,14 @@
+thead > tr > th {
+  cursor: pointer;
+}
+
+.right {
+  position: absolute;
+  right: 0px;
+  width: 300px;
+}
+
+.left {
+  position: absolute;
+  left: 0px;
+}

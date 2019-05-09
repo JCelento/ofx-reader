@@ -1,0 +1,6 @@
+FROM mysql
+
+ENV MYSQL_DATABASE ofxtrandb
+ENV MYSQL_ROOT_PASSWORD &d!53uP.2%Q.KdA.
+
+COPY ./scripts/ /docker-entrypoint-initdb.d/
